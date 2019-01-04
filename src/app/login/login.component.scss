@@ -1,0 +1,84 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    opacity: 1;
+    background: url(../../assets/images/bg_upload.png) no-repeat 0 0;
+    background-size: cover;
+    .content {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .app-name {
+            margin-top: 0px;
+            padding-bottom: 10px;
+            font-size: 32px;
+        }
+        .login-form {
+            padding: 20px;
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 0 10px #ddd;
+            input:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 30px white inset;
+            }
+            
+        }
+    }
+
+    // &:after {
+    //     content: '';
+    //     background: #0084FF;
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 50%;
+    //     right: 0;
+    // }
+    // &:before {
+    //     content: '';
+    //     background: #a0b6de;
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    // }
+}
+.text-center {
+    text-align: center;
+}
+.w-100 {
+    width: 100%;
+}
+
+.progressbar {
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    box-sizing: border-box;
+    font-size: 1px;
+    height: 100%;
+    left: 0;
+    margin: 0!important;
+    padding: 0!important;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2147483646;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #cb2431;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+    border-radius: 5px;
+}

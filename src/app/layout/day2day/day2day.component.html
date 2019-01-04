@@ -1,0 +1,71 @@
+
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+  <div fxFlex class="testsection">
+      <mat-card fxFlexFill fxLayoutAlign="center center">
+          
+         
+        <mat-card>
+        <mat-card-header>
+            <mat-card-title>Form Field</mat-card-title>
+        </mat-card-header>
+        <form name="daytwoday"  [formGroup]="daytwoday_form">
+          <mat-card-content> 
+
+
+            <mat-form-field  class="inputField">
+                <input name="datapicker_name" formControlName="datapicker" matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker  ></mat-datepicker>
+            </mat-form-field>
+
+                <mat-form-field class="inputField">
+
+                        <input type="text" placeholder="Entry Name" aria-label="Assignee" matInput formControlName="day2day_info" [matAutocomplete]="auto" name="day2day_info"  >
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.name}}
+                          </mat-option>
+                        </mat-autocomplete>
+
+                </mat-form-field> 
+
+              <mat-form-field class="inputField">
+                  <input type="tel" matInput placeholder="Amount" name="day2day_amount" formControlName="day2day_amount">
+              </mat-form-field>
+
+            <mat-form-field  class="inputField">
+                <mat-select placeholder="Select" name="day2day_type" formControlName="day2day_type">
+                    <mat-option *ngFor="let daytwoday of daytwoday_type" [value]="daytwoday._id">
+                        {{daytwoday.type_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+           
+
+              <mat-form-field  class="inputField">
+                  <textarea matInput placeholder="Details/Note"  name="user_note" formControlName="user_note" ></textarea>
+              </mat-form-field>
+
+
+
+
+
+            <div class="submit_btn">
+                <button  mat-raised-button color="primary" type="submit"  [disabled] = "!daytwoday_form.valid"  (click)="day2dayFormSubmit(daytwoday_form.value)"  >Submit</button>
+            </div>
+
+              
+
+        </mat-card-content>
+        </form>
+
+        
+          
+      </mat-card>
+ 
+
+
+      </mat-card>
+  </div>
+</div>

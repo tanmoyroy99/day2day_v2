@@ -1,0 +1,95 @@
+<div class="progressbar" *ngIf="this.environment.loaderdata == 'active'">
+    <mat-progress-bar mode="indeterminate" [color]="'#4286f4'" ></mat-progress-bar>
+</div>
+<div class="login-page">
+    <div class="content">
+
+
+            <!-- <section class="hero-unit container" data-hero-unit="">
+                <img class="hero-image" src="https://manychat.com/static/element_for_header2.png">
+                <div class="container-inner hero-unit__content" data-search-box="">
+                </div>
+            </section>
+
+<style>
+.hero-unit {
+    position: relative;
+    padding-top: calc(4% + 80px);
+    padding-bottom: 4%;
+    background-color: #0084FF;
+    color: #fff;
+}
+.hero-unit {
+    background-image: url(https://manychat.com/static/element_for_header.svg);
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+}
+.hero-image {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    height: 100%;
+}
+.hero-unit__content {
+    position: relative;
+    z-index: 2;
+}
+</style> -->
+
+
+        <!-- <h1 class="app-name">Sb Admin Material</h1> -->
+        <form class="login-form" [formGroup]="loginform">
+
+            <div class="text-center">
+                <h2 class="app-name">Day-2-daY  Login</h2>
+            </div>
+ 
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="User Name/Email Id" formControlName = "user_name" name="user_name" type="email" > 
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="password" placeholder="Password" formControlName = "password"  name="password" >
+                    </mat-form-field>
+                </div>
+            </div>
+			
+			<div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 20px 0">
+               
+                <div fxFlex fxLayoutAlign="end">
+                    <mat-checkbox name="remember_me" formControlName="remember_me">Remember My User Name/Email Id</mat-checkbox>
+
+                   
+                </div>
+            </div>
+
+
+
+			
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 20px 0">
+               
+                <div fxFlex fxLayoutAlign="end">
+                    <a href="javascript:void(0)" >Forget Password</a>
+                </div>
+            </div>
+
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <button mat-raised-button color="primary" class="w-100" (click)="onLogin(loginform.value)"  [disabled] = "!loginform.valid">Login</button>
+                </div>
+            </div>
+
+
+
+        </form>
+        <div class="loader-overlay" style="display:none;" ><mat-spinner></mat-spinner><div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<p>
+  day2daytype works!
+</p>
+
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+  <div fxFlex class="testsection">
+      <mat-card fxFlexFill fxLayoutAlign="center center">
+      <mat-card>
+        <mat-card-header>
+            <mat-card-title>Form Field</mat-card-title>
+        </mat-card-header>
+
+       
+
+
+        <form name="daytwoday"   [formGroup]="daytwoday_formtype" >
+          <mat-card-content> 
+
+              <mat-form-field class="inputField">
+                  <input type="text" matInput placeholder="Enter Name" name="day2day_typename" formControlName="day2day_typename">
+              </mat-form-field>
+
+              <mat-form-field  class="inputField">
+                  <textarea matInput placeholder="Details/Note"  name="day2day_typedesc" formControlName="day2day_typedesc" ></textarea>
+              </mat-form-field>
+
+            <div class="submit_btn">
+                <button  mat-raised-button color="primary" type="submit" [disabled] = "!daytwoday_formtype.valid"  (click)="day2daytypeFormSubmit(daytwoday_formtype.value)"  >Submit</button>
+            </div>
+
+        </mat-card-content>
+        </form>
+      </mat-card>
+      </mat-card>
+  </div>
+</div>
