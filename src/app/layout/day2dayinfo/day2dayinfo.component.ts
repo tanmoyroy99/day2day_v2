@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Http, Headers } from '@angular/http';
-
 import {EnvironmentService} from '../../services/environment.service';
-
-import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {share} from 'rxjs/operators'
-import {
-  map,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap
-} from "rxjs/operators";
- 
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+  info: string;
+  _id: string;
+  datetime: any;
+  user_note: string;
+  day2dayPaymentType: string;
+  day2day_info: string;
+  day2day_amount: string;
+}
+
 
 export interface UserData {
   _id: string;
@@ -50,9 +50,13 @@ export class Day2dayinfoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   action_url = 'https://daytoday27081989.herokuapp.com/api/day2day/';
   
+  animal: string;
+  name: string;
+
   constructor(
     private http: Http,
     public environment: EnvironmentService,
+    public dialog: MatDialog
   ) {
     
   }
@@ -102,8 +106,36 @@ export class Day2dayinfoComponent implements OnInit {
   }
 
 
+
+  openDialog(rowdatainfo) {
+    console.log(rowdatainfo);
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        id      : rowdatainfo._id,
+        datetime: rowdatainfo.datetime,
+        day2dayPaymentType: rowdatainfo.day2dayPaymentType.type_name,
+        day2day_amount    : rowdatainfo.day2day_amount,
+        day2day_info      : rowdatainfo.day2day_info,
+        user_note         : rowdatainfo.user_note,
+        animal: 'unicorn',
+        info  : 'Hi Tanmoy'
+      }
+    });
+  }
+
   
 
+}
+
+
+
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {} 
 }
 
 

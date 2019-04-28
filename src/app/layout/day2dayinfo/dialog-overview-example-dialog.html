@@ -1,0 +1,27 @@
+
+<h1 mat-dialog-title style="justify-content: center"><strong>Date: </strong>{{data.datetime | date:'EEEE, MMMM, dd yyyy'}}</h1>
+<div mat-dialog-content  class="popupview"> 
+  <ul>
+    <li>
+        <strong>Name: </strong>{{data.day2day_info}}
+    </li>
+    <li>
+        <strong>Amount: </strong>{{data.day2day_amount | currency: 'INR'}}
+    </li>
+    <li>
+        <strong>Type: </strong>{{data.day2dayPaymentType}}
+    </li>
+    <li>
+        <strong>Datails/Note: </strong>
+        <span style="white-space: pre-line;">{{data.user_note}}</span>
+    </li>
+
+  </ul>
+  
+</div>
+
+<style>
+.popupview ul li{
+  margin: 10px 0;
+}
+</style>

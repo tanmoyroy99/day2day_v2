@@ -6,12 +6,25 @@ import {map, startWith} from 'rxjs/operators';
 import { Http, Headers } from '@angular/http';
 import { error } from 'protractor';
 import {MatSnackBar} from '@angular/material';
+import {switchMap, debounceTime, tap, finalize} from 'rxjs/operators';
 
 import {EnvironmentService} from '../../services/environment.service';
 
 
 export interface User {
   name: string;
+}
+
+export interface UserData {
+  _id: string;
+  user_id: string;
+  datetime: any;
+  status: string;
+  system_note: string;
+  user_note: string;
+  day2dayPaymentType: string;
+  day2day_info: string;
+  day2day_amount: string;
 }
 
 interface Applications {
@@ -31,59 +44,89 @@ interface Applications {
 })
 export class Day2dayComponent implements OnInit {
 
-        daytwoday_form: FormGroup;
+        public daytwoday_form: FormGroup;
         action_url = 'https://daytoday27081989.herokuapp.com/api/day2day/';
 
         public daytwoday_type : Applications[];
+
+        public userData : UserData[];
+
+
+        day2day_info = new FormControl();
+        
+        options: any[]=[];
+
+
         constructor(
           private router: Router,
           private http: Http,
           public snackBar: MatSnackBar,
           public environment: EnvironmentService,
       ) {
+
+
         this.environment.loaderdata = 'active'; 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('x-auth-token', localStorage.getItem('authData'));
-        console.log(headers);
+        
         this.http.get(this.action_url+'type/all/',{ headers: headers }).subscribe(
           res =>{ this.daytwoday_type = res.json() as Applications[]; this.environment.loaderdata = 'inactive'; }
         );
+
       }
-      
-    
-      day2day_info = new FormControl();
-      options: User[] = [
-        {name: 'Mary' },
-        {name: '7Igor'},
-      ];
-      filteredOptions: Observable<User[]>;
+       
+
+      filteredOptions: Observable<any[]>;
+
+     
  
     ngOnInit() {
-//console.log(localStorage.getItem('authData'));
 
-        this.daytwoday_form = new FormGroup ({
-           day2day_info: new FormControl('',  [Validators.required,
-                                        Validators.minLength(3),Validators.maxLength(20),
-                                      ]),
-            day2day_amount: new FormControl('', [Validators.required,
-                                          Validators.minLength(2),Validators.maxLength(10),Validators.pattern("^[0-9.]{1,8}$") ]),
-            user_note: new FormControl('', [Validators.required,
-                                          Validators.minLength(6), Validators.maxLength(160),]),
-            day2day_type: new FormControl('', [Validators.required,]), 
-            datapicker: new FormControl((new Date()).toISOString(), [Validators.required,]),
-                                          
-                                          
-        });
 
-        this.filteredOptions = this.day2day_info.valueChanges
-          .pipe(
-            startWith<string | User>(''),
-            map(value => typeof value === 'string' ? value : value.name),
-            map(name => name ? this._filter(name) : this.options.slice())
-          );
+    this.daytwoday_form = new FormGroup ({
+        day2day_info: new FormControl('',  [Validators.required,
+                                     Validators.minLength(3),Validators.maxLength(20),
+                                   ]),
+         day2day_amount: new FormControl('', [Validators.required,
+                                       Validators.minLength(2),Validators.maxLength(10),Validators.pattern("^[0-9.]{1,8}$") ]),
+         user_note: new FormControl('', [Validators.required,
+                                       Validators.minLength(6), Validators.maxLength(160),]),
+         day2day_type: new FormControl('', [Validators.required,]), 
+         datapicker: new FormControl((new Date()).toISOString(), [Validators.required,]),
+     });
+     console.log(this.daytwoday_form);
 
-    }
+
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('x-auth-token', localStorage.getItem('authData'));
+
+      this.http.get(this.action_url+'info/alljoin/',{ headers: headers }).subscribe(
+        res =>{ 
+          this.userData = res.json() as UserData[];
+          this.options=this.userData.map(o=>{return o.day2day_info});
+
+        }
+      );
+      
+
+
+      this.filteredOptions = this.daytwoday_form.controls['day2day_info'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+        
+      );
+        
+
+
+
+
+
+          
+
+    } 
 
     day2dayFormSubmit(formdata){
       this.environment.loaderdata = 'active'; 
@@ -133,14 +176,14 @@ export class Day2dayComponent implements OnInit {
     }
 
 
-      displayFn(user?: User): string | undefined {
-        return user ? user.name : undefined;
-      }
+     
 
-      private _filter(name: string): User[] {
-        const filterValue = name.toLowerCase();
-          console.log(filterValue);
-        return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+      private _filter(value: any): any[] {
+        console.log(value);
+        const filterValue = value.toLowerCase();
+        
+        //return this.options.filter(option => option.toLowerCase().includes(filterValue));
+        return this.options.filter(option => option.toLowerCase().includes(filterValue));
       }
   
  

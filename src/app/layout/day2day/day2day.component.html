@@ -16,15 +16,16 @@
                 <input name="datapicker_name" formControlName="datapicker" matInput [matDatepicker]="picker" placeholder="Choose a date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker  ></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> 
 
                 <mat-form-field class="inputField">
 
-                        <input type="text" placeholder="Entry Name" aria-label="Assignee" matInput formControlName="day2day_info" [matAutocomplete]="auto" name="day2day_info"  >
-                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option.name}}
-                          </mat-option>
+                        <input type="text" placeholder="Entry Name" aria-label="Assignee"  matInput formControlName="day2day_info" [matAutocomplete]="auto" name="day2day_info"  >
+
+                        <mat-autocomplete #auto="matAutocomplete" >
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
                         </mat-autocomplete>
 
                 </mat-form-field> 

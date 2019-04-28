@@ -19,7 +19,8 @@ import {
     MatSliderModule, 
     MatSlideToggleModule,  
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
 } from '@angular/material';
 
  
@@ -37,7 +38,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 
-import { Day2dayinfoComponent } from './day2dayinfo/day2dayinfo.component';
+import { Day2dayinfoComponent, DialogDataExampleDialog } from './day2dayinfo/day2dayinfo.component';
 import { Day2daytypeComponent } from './day2daytype/day2daytype.component';
 
 @NgModule({
@@ -69,8 +70,10 @@ import { Day2daytypeComponent } from './day2daytype/day2daytype.component';
         MatSliderModule, 
         MatSlideToggleModule,  
         MatSnackBarModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatDialogModule
     ],
-    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, Day2dayinfoComponent,Day2daytypeComponent]
+    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, Day2dayinfoComponent,Day2daytypeComponent,DialogDataExampleDialog],
+    entryComponents: [DialogDataExampleDialog]
 })
 export class LayoutModule {}
