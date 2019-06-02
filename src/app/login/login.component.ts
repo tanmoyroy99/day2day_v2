@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Http, Response, RequestOptions, Headers, RequestMethod } from '@angular/http';
 import { tokenKey } from '@angular/core/src/view';
 import {MatSnackBar} from '@angular/material';
 import { CookieService } from 'angular2-cookie/core';
-
-import {EnvironmentService} from '../services/environment.service'
+import {EnvironmentService} from '../services/environment.service';
+import {action_URL} from '../services/constant'
 
 
 
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
         public environment: EnvironmentService,
     ) {}
     loginform: FormGroup;
-    login_url= 'https://daytoday27081989.herokuapp.com/api/auth/';
+    login_url= action_URL.login_url;
     token_value: any;
     datausername : any;
 
@@ -80,13 +79,10 @@ export class LoginComponent implements OnInit {
             error=>{
                 this.environment.loaderdata = 'inactive';
                 if(error.status == 400){
-                    this.snackBar.open(error._body, 'OK', {
-                        duration: 10000,
-                    });
+                    this.environment.snackBarError(error._body, 'Ok');
+                    
                 }else{
-                    this.snackBar.open('OOPS! something went wrong Day2daY', 'OK', {
-                        duration: 10000,
-                    });
+                    this.environment.snackBarError('OOPS! something went wrong Day2daY', 'Ok');
                 }
                console.log(error);
         });

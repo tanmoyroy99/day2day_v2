@@ -18,6 +18,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 // AoT requires an exported function for factories 
 export const createTranslateLoader = (http: HttpClient) => {
     // for development
@@ -39,6 +41,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         OverlayModule,
         HttpClientModule,
         HttpModule,
+        MatSnackBarModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -47,7 +50,7 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
-    providers: [],
+    providers: [MatSnackBarModule],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

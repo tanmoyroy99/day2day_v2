@@ -2,3 +2,50 @@
 @import 'main';
 @import 'utils';
 @import 'responsive';
+
+.mat-snack-bar-container{
+    margin: 40px !important;
+    border-radius: 10px !important;
+    color: #fff;
+    box-shadow: 5px 5px 33px #000;
+
+}
+.errorMessage {
+    background: #c12d2d;
+    .mat-simple-snackbar-action button{
+        color: transparent;
+        font-size: 0px;
+        min-width: 25px;
+        background-color: #fff;
+        // margin: 0 0 10px 10px;
+        padding: 0;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        left: 15px;
+        // top: 7px;
+        border-radius: 50%;
+        max-height: 25px !important;
+        opacity: 1;
+        background-image: url('../assets/images/close.png');
+    }
+}
+
+.sucessMessage {
+    background: #255bec;
+    .mat-simple-snackbar-action button{
+        color: transparent;
+        font-size: 0px;
+        min-width: 25px;
+        background-color: #fff;
+        // margin: 0 0 10px 10px;
+        padding: 0;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        left: 15px;
+        // top: 7px;
+        border-radius: 50%;
+        max-height: 25px !important;
+        opacity: 1;
+        background-image: url('../assets/images/close.png');
+    }
+}
