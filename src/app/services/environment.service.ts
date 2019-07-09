@@ -13,7 +13,7 @@ loaderdata: string = 'active';
 
   snackBarError(massage, acion='Ok'){
     this.snackBar.open(massage, acion, {
-      duration: 1000000,
+      duration: 10000,
       horizontalPosition:'center',
       verticalPosition:'top',
       panelClass:'errorMessage'

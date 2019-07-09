@@ -10,7 +10,7 @@ import {
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DataInterceptor } from './data.interceptor';
 
 // AoT requires an exported function for factories 
 export const createTranslateLoader = (http: HttpClient) => {
@@ -30,6 +31,12 @@ export const createTranslateLoader = (http: HttpClient) => {
     );*/
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
+
+var DataInterceptorProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: DataInterceptor,
+    multi: true,
+}
 
 @NgModule({
     declarations: [AppComponent],
@@ -50,7 +57,7 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
-    providers: [MatSnackBarModule],
+    providers: [MatSnackBarModule, DataInterceptorProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
