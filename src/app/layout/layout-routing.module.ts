@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { Day2dayinfoComponent } from './day2dayinfo/day2dayinfo.component'
 import { Day2daytypeComponent } from './day2daytype/day2daytype.component'
+import { NotepadComponent } from './notepad/notepad.component';
+
 
 
 const routes: Routes = [
@@ -56,6 +58,10 @@ const routes: Routes = [
             {
                 path: 'day2daytype',
                 component: Day2daytypeComponent
+            },
+            {
+                path: 'all-notepad',
+                component: NotepadComponent
             }
 
             

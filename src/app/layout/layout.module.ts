@@ -40,6 +40,7 @@ import { NavComponent } from './nav/nav.component';
 
 import { Day2dayinfoComponent, DialogDataExampleDialog } from './day2dayinfo/day2dayinfo.component';
 import { Day2daytypeComponent } from './day2daytype/day2daytype.component';
+import { NotepadComponent } from './notepad/notepad.component';
 
 @NgModule({
     imports: [
@@ -73,7 +74,7 @@ import { Day2daytypeComponent } from './day2daytype/day2daytype.component';
         MatProgressBarModule,
         MatDialogModule
     ],
-    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, Day2dayinfoComponent,Day2daytypeComponent,DialogDataExampleDialog],
+    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, Day2dayinfoComponent,Day2daytypeComponent,DialogDataExampleDialog, NotepadComponent],
     entryComponents: [DialogDataExampleDialog]
 })
 export class LayoutModule {}
