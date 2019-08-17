@@ -49,3 +49,11 @@
         background-image: url('../assets/images/close.png');
     }
 }
+
+.mat-list-option.mat-list-item-focus, .mat-list-option:hover, .mat-nav-list .mat-list-item.mat-list-item-focus, .mat-nav-list .mat-list-item:hover{
+    background: #0070c41f;
+}
+
+a.mat-list-item.active {
+    background: #0070c426;
+}
